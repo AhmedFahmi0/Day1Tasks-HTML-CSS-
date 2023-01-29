@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    #button {
+        width: 200px;
+        height: 55px;
+        position: fixed;
+        left: 300px;
+        top: 200px;
+    }
+       
+    #button:hover {
+   
+        width: 200px;
+        height: 55px;
+        border: 2px solid red;
+        box-shadow: 5cm;
+        
+        animation-name: myanim;
+        animation-duration: 5s;
+        animation-direction: alternate;
+        animation-delay: 1s;
+        animation-iteration-count: infinite;
+        left: 300px;
+        top: 200px;
+      }
+      @keyframes myanim {
+        0% {
+          
+          background-color: red;
+          border: 5px solid black;
+        }
+        25% {
+          opacity: 0.2;
+          box-shadow: 50%;
+          border: 10px solid rgb(12, 2, 2);
+        }
+        50% {
+          font-color: red;
+          background-color: aquamarine;
+          border:10px yellow;
+        }
+        100% {
+            background-color: blue;
+            border: 2px solid red;
+            box-shadow: 20%;
+        }
+      }
+    </style>
+</head>
+<body>
+
+    <input type="button" value="Hover to Blink" id="button" width="200px" height="55px" font-weight=7">
+    
+</body>
+</html>

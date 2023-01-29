@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            color: yellowgreen;
+            width: 50%;
+            height: 50%;
+            border: red;
+            border-width: 40px;
+            stroke: blue;
+        }
+        seek-bar {
+  width:400px;
+}
+    </style>
+</head>
+<body>
+    <video
+    src="./frozen.mp4"
+    width="450"
+    poster="./frozen.jpg"
+    id="video"
+   
+  ></video>
+  <div id="video-controls">
+    <input type="range" id="seek-bar" value="0" style="width:450px"><br/>
+    <input type="button" id="play" value="Play">
+    <input type="button" id="stop" value="Stop">
+    <input type="button" id="<<" value="<<">
+    <input type="button" id="<" value="<">
+    <input type="button" id=">" value=">">
+    <input type="button" id=">>" value=">>">
+    <input type="range" id="volume-bar" min="0" max="1" step="0.1" value="1">
+    <button type="button" id="mute">Mute</button><br/>Speed
+    <input type="range" id="speed-bar" min="1" max="4" step="1" value="1">
+    <button type="button" id="full-screen">Full-Screen</button>
+  </div>
+   <script>
+      var video = document.getElementById("video");
+
+// Buttons
+var playButton = document.getElementById("play");
+var stopButton = document.getElementById("stop");
+var begButton = document.getElementById("<<");
+var backwardButton = document.getElementById("<");
+var forwardButton = document.getElementById(">");
+var endButton = document.getElementById(">>");
+var muteButton = document.getElementById("mute");
+var fullScreenButton = document.getElementById("full-screen");
+
+// Sliders
+var speedBar = document.getElementById("speed-bar");
+var seekBar = document.getElementById("seek-bar");
+var volumeBar = document.getElementById("volume-bar");
+playButton.addEventListener("click", function() {
+  if (video.paused == true) {
+    video.play()}
+})
+
+stopButton.addEventListener("click", function() {
+    if (video.paused == false) {
+    video.pause()}
+})
+muteButton.addEventListener("click", function() {
+  if (video.muted == false) {
+    video.muted = true;
+    muteButton.innerHTML = "Unmute";
+  } else {
+    video.muted = false;
+    muteButton.innerHTML = "Mute";
+  }
+});
+fullScreenButton.addEventListener("click", function() {
+  if (video.requestFullscreen) {
+    video.requestFullscreen();
+   }
+});
+
+seekBar.addEventListener("change", function() {
+  var time = video.duration * (seekBar.value / 100);
+  video.currentTime = time;
+});
+
+video.addEventListener("timeupdate", function() {
+  var value = (100 / video.duration) * video.currentTime;
+  seekBar.value = value;
+});
+
+volumeBar.addEventListener("change", function() {
+  video.volume = volumeBar.value;
+});
+speedBar.addEventListener("change",function(){
+   video.playbackRate=speedBar.value;
+})
+backwardButton.addEventListener("click",()=>video.currentTime-=10);
+forwardButton.addEventListener("click",()=>video.currentTime+=10);
+begButton.addEventListener("click",()=>video.currentTime=0);
+endButton.addEventListener("click",()=>video.currentTime=video.duration);
+</script>
+</body>
+</html>
